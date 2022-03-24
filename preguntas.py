@@ -15,8 +15,9 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 import csv
 
 with open("data.csv", newline='') as f:
-  datos = csv.reader(f, delimiter='\t')
-  columns = list(datos)
+    datos = csv.reader(f, delimiter='\t')
+    columna2 = list(datos)
+
 
 def pregunta_01():
     """
@@ -24,12 +25,14 @@ def pregunta_01():
     Rta/
     214
     """
-    
+
     suma = 0
-    for num in columns:
-        suma = int([1])
+    for numero in columna2:
+        suma += int(numero[1])
 
     return suma
+    
+    print(suma)
 
 
 def pregunta_02():
