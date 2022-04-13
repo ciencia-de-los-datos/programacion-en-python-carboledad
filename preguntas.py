@@ -140,7 +140,7 @@ def pregunta_04():
             new_dict[i] = new_dict[i] + 1
         else:
             new_dict[i] = 1
-    new_dict = [[str(key), value] for key, value in new_dict.items()]
+    new_dict = [(str(key), value) for key, value in new_dict.items()]
     return new_dict
 
 
