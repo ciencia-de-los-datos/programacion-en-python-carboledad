@@ -362,7 +362,25 @@ def pregunta_10():
 
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [[row[0], row[3].split(','), row[4].split(',')] for row in f]
+    
+    j=0
+    box = []
+    for x in f:
+        val1=0
+        val2=0
+        for i in f[j][1]:
+            val1 = val1 + 1
+        for i in f[j][2]:
+            val2 = val2 + 1
+        value = tuple()
+        value = tuple(f[j][0] + str(val1) + str(val2))
+        box.append(value)
+        j= j+1
+    return box
 
 
 def pregunta_11():
