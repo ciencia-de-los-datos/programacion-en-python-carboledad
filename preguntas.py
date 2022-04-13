@@ -288,7 +288,22 @@ def pregunta_08():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [[row[1], row[0]] for row in f]
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]]+','+i[1]
+        else:
+            new_dict[i[0]] = i[1]
+
+    tupla = sorted((tuple((int(key), sorted(list(set(value.split(','))))) for key, value in new_dict.items())))
+
+    for i in tupla:
+        print(i)
+    return tupla
 
 
 def pregunta_09():
@@ -311,7 +326,22 @@ def pregunta_09():
     }
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[4] for row in f]
+    f = [row.split(',') for row in f]
+    f = [row for rowx in f for row in rowx]
+    f = [row.replace(":", ',') for row in f]
+    f = sorted([row.split(',') for row in f], key=None, reverse=False)
+
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + 1
+        else:
+            new_dict[i[0]] = 1
+    return new_dict
 
 
 def pregunta_10():
