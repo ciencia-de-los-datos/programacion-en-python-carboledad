@@ -88,7 +88,24 @@ def pregunta_03():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [i.replace('\n', ',') for i in f]
+    f = [i.split('\t') for i in f]
+
+    for i in f:
+        f = [[row[0], int(row[1])] for row in f]
+    num_list = sorted(f, key=None, reverse=False)
+
+    num_dict = {}
+    for t in num_list:
+        if t[0] in num_dict:
+            num_dict[t[0]] = num_dict[t[0]]+t[1]
+        else:
+            num_dict[t[0]] = t[1]
+    lista = [(key, str(value)) for key,value in num_dict.items()]
+    for i in lista:
+        print(i[0]+','+i[1])
+    return lista
 
 
 def pregunta_04():
