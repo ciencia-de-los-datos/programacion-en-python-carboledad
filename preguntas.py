@@ -248,7 +248,22 @@ def pregunta_07():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [[row[1], row[0]] for row in f]
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]]+','+i[1]
+        else:
+            new_dict[i[0]] = i[1]
+
+    tupla = sorted(tuple((key, value.split(',')) for key, value in new_dict.items()))
+
+    for i in tupla:
+        print(i)
+    return tupla
 
 
 def pregunta_08():
