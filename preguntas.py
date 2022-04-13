@@ -50,25 +50,25 @@ def pregunta_02():
     ]
 
     """
-  from operator import itemgetter
+      from operator import itemgetter
 
-  with open("data.csv", "r") as file:
-      data = file.readlines()
+      with open("data.csv", "r") as file:
+          data = file.readlines()
 
-  data = [row[0] for row in data]
+      data = [row[0] for row in data]
 
-  result = dict()
-  for letra in data:
-      if letra in result.keys():
-          result[letra] = result[letra] + 1
-      else:
-          result[letra] = 1 
+      result = dict()
+      for letra in data:
+          if letra in result.keys():
+              result[letra] = result[letra] + 1
+          else:
+              result[letra] = 1 
 
-  result
+      result
 
-  tuplas = [(key, valor) for key, valor in result.items()]
-  tuplas = sorted(tuplas, key=itemgetter(0), reverse=False)
-  return tuplas
+      tuplas = [(key, valor) for key, valor in result.items()]
+      tuplas = sorted(tuplas, key=itemgetter(0), reverse=False)
+      return tuplas
 
 
 def pregunta_03():
