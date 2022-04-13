@@ -128,7 +128,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[2].split('-') for row in f]
+    f = sorted([row[1] for row in f], key=None, reverse=False)
+
+    new_dict = {}
+    for i in f:
+        if str(i) in new_dict:
+            new_dict[i] = new_dict[i] + 1
+        else:
+            new_dict[i] = 1
+    new_dict = [[str(key), value] for key, value in new_dict.items()]
+    return new_dict
 
 
 def pregunta_05():
