@@ -203,7 +203,26 @@ def pregunta_06():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[4] for row in f]
+    f = [row.split(',') for row in f]
+    f = [row for rowx in f for row in rowx]
+    f = [row.replace(":", ',') for row in f]
+    f = sorted([row.split(',') for row in f], key=None, reverse=False)
+    
+    result = {}
+    for letra, valor in f:
+        valor = int(valor)
+        if letra in result.keys():
+            result[letra].append(valor)
+        else:
+            result[letra] = [valor]
+
+    result = [(key, min(valor), max(valor)) for key, valor in result.items()]
+    result = sorted(result, key=itemgetter(0), reverse=False)
+    return result
 
 
 def pregunta_07():
