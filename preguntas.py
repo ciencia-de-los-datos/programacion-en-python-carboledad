@@ -102,10 +102,8 @@ def pregunta_03():
             num_dict[t[0]] = num_dict[t[0]]+t[1]
         else:
             num_dict[t[0]] = t[1]
-    lista = [(key, str(value)) for key,value in num_dict.items()]
-    for i in lista:
-        print(i[0]+','+i[1])
-    return lista
+    num_dict = [(key, value) for key,value in num_dict.items()]
+    return num_dict
 
 
 def pregunta_04():
