@@ -203,6 +203,8 @@ def pregunta_06():
     ]
 
     """
+    from operator import itemgetter
+    
     f = open('data.csv', 'r').readlines()
     f = [row.replace('\n', '') for row in f]
     f = [row.split('\t') for row in f]
