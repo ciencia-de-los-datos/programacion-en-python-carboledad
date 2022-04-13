@@ -259,7 +259,7 @@ def pregunta_07():
         else:
             new_dict[i[0]] = i[1]
 
-    tupla = sorted(tuple((key, value.split(',')) for key, value in new_dict.items()))
+    tupla = sorted(tuple((int(key), value.split(',')) for key, value in new_dict.items()))
 
     for i in tupla:
         print(i)
