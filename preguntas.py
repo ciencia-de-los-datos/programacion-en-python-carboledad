@@ -423,6 +423,11 @@ def pregunta_12():
     }
 
     """
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n','') for row in f]
+    f = [row.split('\t') for row in f ]
+    f = [[row[0], row[4].split(',')] for row in f]
+
     lista=[]
     for i, j in f:
         for x in i:
@@ -430,7 +435,7 @@ def pregunta_12():
     new_dict={}
     for i in lista:
         if i[0] in new_dict:
-            new_dict[i[0]] = new_dict[i[0]] + int(sum([int(j.split(':')[1]) for j in i[1]]))
+            new_dict[i[0]] = new_dict[i[0]] + sum([int(j.split(':')[1]) for j in i[1]])
         else:
-            new_dict[i[0]] = int(sum([int(j.split(':')[1]) for j in i[1]]))
+            new_dict[i[0]] = sum([int(j.split(':')[1]) for j in i[1]])
     return new_dict
