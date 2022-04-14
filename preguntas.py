@@ -423,4 +423,14 @@ def pregunta_12():
     }
 
     """
-    return
+    lista=[]
+    for i, j in f:
+        for x in i:
+            lista.append([x, j])
+    new_dict={}
+    for i in lista:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + sum([int(j.split(':')[1]) for j in i[1]])#i[1]
+        else:
+            new_dict[i[0]] = sum([int(j.split(':')[1]) for j in i[1]])#i[1]
+    return new_dict
