@@ -12,16 +12,27 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+import csv
+
+with open("data.csv", newline='') as f:
+    datos = csv.reader(f, delimiter='\t')
+    columna2 = list(datos)
+
 
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
-
     Rta/
     214
-
     """
-    return
+
+    suma = 0
+    for numero in columna2:
+        suma += int(numero[1])
+
+    return suma
+    
+    print(suma)
 
 
 def pregunta_02():
@@ -39,7 +50,27 @@ def pregunta_02():
     ]
 
     """
-    return
+    import csv
+    
+    from operator import itemgetter
+
+    with open("data.csv", "r") as file:
+         data = file.readlines()
+
+    data = [row[0] for row in data]
+
+    result = dict()
+    for letra in data:
+        if letra in result.keys():
+            result[letra] = result[letra] + 1
+        else:
+            result[letra] = 1 
+
+    result
+
+    tuplas = [(key, valor) for key, valor in result.items()]
+    tuplas = sorted(tuplas, key=itemgetter(0), reverse=False)
+    return tuplas
 
 
 def pregunta_03():
@@ -57,7 +88,22 @@ def pregunta_03():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [i.replace('\n', ',') for i in f]
+    f = [i.split('\t') for i in f]
+
+    for i in f:
+        f = [[row[0], int(row[1])] for row in f]
+    num_list = sorted(f, key=None, reverse=False)
+
+    num_dict = {}
+    for t in num_list:
+        if t[0] in num_dict:
+            num_dict[t[0]] = num_dict[t[0]]+t[1]
+        else:
+            num_dict[t[0]] = t[1]
+    num_dict = [(key, value) for key,value in num_dict.items()]
+    return num_dict
 
 
 def pregunta_04():
@@ -82,7 +128,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[2].split('-') for row in f]
+    f = sorted([row[1] for row in f], key=None, reverse=False)
+
+    new_dict = {}
+    for i in f:
+        if str(i) in new_dict:
+            new_dict[i] = new_dict[i] + 1
+        else:
+            new_dict[i] = 1
+    new_dict = [(str(key), value) for key, value in new_dict.items()]
+    return new_dict
 
 
 def pregunta_05():
@@ -100,7 +159,26 @@ def pregunta_05():
     ]
 
     """
-    return
+    from operator import itemgetter
+
+    with open("data.csv", "r") as file:
+          data = file.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [row[:2] for row in data]
+
+    result = {}
+    for letra, valor in data:
+        valor = int(valor)
+        if letra in result.keys():
+            result[letra].append(valor)
+        else:
+            result[letra] = [valor]
+
+    result = [(key, max(valor), min(valor)) for key, valor in result.items()]
+
+    result = sorted(result, key=itemgetter(0), reverse=False)
+    return result
 
 
 def pregunta_06():
@@ -125,7 +203,28 @@ def pregunta_06():
     ]
 
     """
-    return
+    from operator import itemgetter
+    
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[4] for row in f]
+    f = [row.split(',') for row in f]
+    f = [row for rowx in f for row in rowx]
+    f = [row.replace(":", ',') for row in f]
+    f = sorted([row.split(',') for row in f], key=None, reverse=False)
+    
+    result = {}
+    for letra, valor in f:
+        valor = int(valor)
+        if letra in result.keys():
+            result[letra].append(valor)
+        else:
+            result[letra] = [valor]
+
+    result = [(key, min(valor), max(valor)) for key, valor in result.items()]
+    result = sorted(result, key=itemgetter(0), reverse=False)
+    return result
 
 
 def pregunta_07():
@@ -149,7 +248,22 @@ def pregunta_07():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [[row[1], row[0]] for row in f]
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]]+','+i[1]
+        else:
+            new_dict[i[0]] = i[1]
+
+    tupla = sorted(tuple((int(key), value.split(',')) for key, value in new_dict.items()))
+
+    for i in tupla:
+        print(i)
+    return tupla
 
 
 def pregunta_08():
@@ -174,7 +288,22 @@ def pregunta_08():
     ]
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [[row[1], row[0]] for row in f]
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]]+','+i[1]
+        else:
+            new_dict[i[0]] = i[1]
+
+    tupla = sorted((tuple((int(key), sorted(list(set(value.split(','))))) for key, value in new_dict.items())))
+
+    for i in tupla:
+        print(i)
+    return tupla
 
 
 def pregunta_09():
@@ -197,7 +326,22 @@ def pregunta_09():
     }
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n', '') for row in f]
+    f = [row.split('\t') for row in f]
+    f = [row[4] for row in f]
+    f = [row.split(',') for row in f]
+    f = [row for rowx in f for row in rowx]
+    f = [row.replace(":", ',') for row in f]
+    f = sorted([row.split(',') for row in f], key=None, reverse=False)
+
+    new_dict={}
+    for i in f:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + 1
+        else:
+            new_dict[i[0]] = 1
+    return new_dict
 
 
 def pregunta_10():
@@ -218,7 +362,13 @@ def pregunta_10():
 
 
     """
-    return
+    from operator import itemgetter
+    
+    with open("data.csv","r") as file:
+        data=file.readlines()
+    data=[row.split('\t') for row in data]
+    data_1=[(row[0],len(row[3].split(',')),len(row[4].split(',')))for row in data]
+    return data_1
 
 
 def pregunta_11():
@@ -239,7 +389,23 @@ def pregunta_11():
 
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n','') for row in f]
+    f = [row.split('\t') for row in f ]
+    f = [[row[3].split(','), row[1]] for row in f]
+    f = [[row[0], int(row[1])] for row in f]
+
+    lista=[]
+    for i, j in f:
+        for x in i:
+            lista.append([x, j])
+    new_dict={}
+    for i in lista:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + i[1]
+        else:
+            new_dict[i[0]] = i[1]
+    return new_dict
 
 
 def pregunta_12():
@@ -257,4 +423,19 @@ def pregunta_12():
     }
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n','') for row in f]
+    f = [row.split('\t') for row in f ]
+    f = [[row[0], row[4].split(',')] for row in f]
+
+    lista=[]
+    for i, j in f:
+        for x in i:
+            lista.append([x, j])
+    new_dict={}
+    for i in lista:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + sum([int(j.split(':')[1]) for j in i[1]])
+        else:
+            new_dict[i[0]] = sum([int(j.split(':')[1]) for j in i[1]])
+    return new_dict
