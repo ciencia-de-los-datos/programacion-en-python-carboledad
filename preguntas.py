@@ -389,7 +389,23 @@ def pregunta_11():
 
 
     """
-    return
+    f = open('data.csv', 'r').readlines()
+    f = [row.replace('\n','') for row in f]
+    f = [row.split('\t') for row in f ]
+    f = [[row[3].split(','), row[1]] for row in f]
+    f = [[row[0], int(row[1])] for row in f]
+
+    lista=[]
+    for i, j in f:
+        for x in i:
+            lista.append([x, j])
+    new_dict={}
+    for i in lista:
+        if i[0] in new_dict:
+            new_dict[i[0]] = new_dict[i[0]] + i[1]
+        else:
+            new_dict[i[0]] = i[1]
+    return new_dict
 
 
 def pregunta_12():
